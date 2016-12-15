@@ -46,6 +46,7 @@ var sisane = angular.module('myApp', [
     //'importanciaControllers',
     //'tipodocumentoControllers',
     //'anticoagulanteControllers',
+    'episodioControllers',
     'ui.bootstrap',
     'ngSanitize'
 ]);
@@ -133,6 +134,13 @@ sisane.config(['$routeProvider', function ($routeProvider) {
         $routeProvider.when('/tipodiagnostico/remove/:id', {templateUrl: 'js/tipodiagnostico/remove.html', controller: 'TipodiagnosticoRemoveController'});
         $routeProvider.when('/tipodiagnostico/plist/:page?/:rpp?', {templateUrl: 'js/tipodiagnostico/plist.html', controller: 'TipodiagnosticoPListController'});
         $routeProvider.when('/tipodiagnostico/selection/:page?/:rpp?', {templateUrl: 'js/tipodiagnostico/selection.html', controller: 'TipodiagnosticoSelectionController'});
+         //------------
+        $routeProvider.when('/episodio/view/:id', {templateUrl: 'js/episodio/view.html', controller: 'EpisodioViewController'});
+        $routeProvider.when('/episodio/new/:id?', {templateUrl: 'js/episodio/new.html', controller: 'EpisodioNewController'});
+        $routeProvider.when('/episodio/edit/:id', {templateUrl: 'js/episodio/edit.html', controller: 'EpisodioEditController'});
+        $routeProvider.when('/episodio/remove/:id', {templateUrl: 'js/episodio/remove.html', controller: 'EpisodioRemoveController'});
+        $routeProvider.when('/episodio/plist/:page?/:rpp?', {templateUrl: 'js/episodio/plist.html', controller: 'EpisodioPListController'});
+        $routeProvider.when('/episodio/selection/:page?/:rpp?', {templateUrl: 'js/episodio/selection.html', controller: 'EpisodioSelectionController'});
 //------------
 //        $routeProvider.when('/servicio/view/:id', {templateUrl: 'js/servicio/view.html', controller: 'ServicioViewController'});
 //        $routeProvider.when('/servicio/new/:id?', {templateUrl: 'js/servicio/new.html', controller: 'ServicioNewController'});
@@ -223,6 +231,7 @@ var moduloTipousuario = angular.module('tipousuarioControllers', []);
 var moduloVia = angular.module('viaControllers', []);
 var moduloTipodiagnostico = angular.module('tipodiagnosticoControllers', []);
 var moduloMedicamento = angular.module('medicamentoControllers', []);
+var moduloEpisodio = angular.module('episodioControllers', []);
 //var moduloMedico = angular.module('medicoControllers', []);
 //-------------
 var moduloDirectivas = angular.module('Directives', []);

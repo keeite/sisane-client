@@ -244,6 +244,14 @@ moduloServicios
                 },
                 evaluateMax: function (lowEnd, highEnd) {
                     return Math.max(lowEnd, highEnd);
+                },
+                date_toDate: function (input) {
+                    var parts = input.split('/');
+                    return new Date(parts[2], parts[1] - 1, parts[0]);
+                },
+                date_toDate2: function (input) {
+                    var parts = input.split('-');
+                    return new Date(parts[0], parts[1] - 1, parts[2]);
                 }
             };
         })
