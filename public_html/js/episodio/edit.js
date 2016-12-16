@@ -117,111 +117,6 @@ moduloEpisodio.controller('EpisodioEditController', ['$scope', '$routeParams', '
                 $scope.bean[nameForeign].id = modalResult;
             });
         };
-//        $scope.$watch('bean.obj_importancia.id', function () {
-//            if ($scope.bean) {
-//                serverService.promise_getOne('importancia', $scope.bean.obj_importancia.id).then(function (response) {
-//                    var old_id = $scope.bean.obj_importancia.id;
-//                    $scope.bean.obj_importancia = response.data.message;
-//                    if (response.data.message.id != 0) {
-//                        $scope.outerForm.obj_importancia.$setValidity('exists', true);
-//                    } else {
-//                        $scope.outerForm.obj_importancia.$setValidity('exists', false);
-//                        $scope.bean.obj_importancia.id = old_id;
-//                    }
-//                });
-//            }
-//        });
-//        
-//        $scope.$watch('bean.obj_servicio.id', function () {
-//            if ($scope.bean) {
-//                serverService.promise_getOne('servicio', $scope.bean.obj_servicio.id).then(function (response) {
-//                    var old_id = $scope.bean.obj_servicio.id;
-//                    $scope.bean.obj_servicio = response.data.message;
-//                    if (response.data.message.id != 0) {
-//                        $scope.outerForm.obj_servicio.$setValidity('exists', true);
-//                    } else {
-//                        $scope.outerForm.obj_servicio.$setValidity('exists', false);
-//                        $scope.bean.obj_servicio.id = old_id;
-//                    }
-//                });
-//            }
-//        });
-//        
-//        $scope.$watch('bean.obj_tipo.id', function () {
-//            if ($scope.bean) {
-//                serverService.promise_getOne('tipo', $scope.bean.obj_tipo.id).then(function (response) {
-//                    var old_id = $scope.bean.obj_tipo.id;
-//                    $scope.bean.obj_tipo = response.data.message;
-//                    if (response.data.message.id != 0) {
-//                        $scope.outerForm.obj_tipo.$setValidity('exists', true);
-//                    } else {
-//                        $scope.outerForm.obj_tipo.$setValidity('exists', false);
-//                        $scope.bean.obj_tipo.id = old_id;
-//                    }
-//                });
-//            }
-//        });
-//        
-//        $scope.$watch('bean.obj_paciente.id', function () {
-//            if ($scope.bean) {
-//                serverService.promise_getOne('paciente', $scope.bean.obj_paciente.id).then(function (response) {
-//                    var old_id = $scope.bean.obj_paciente.id;
-//                    $scope.bean.obj_paciente = response.data.message;
-//                    if (response.data.message.id != 0) {
-//                        $scope.outerForm.obj_paciente.$setValidity('exists', true);
-//                    } else {
-//                        $scope.outerForm.obj_paciente.$setValidity('exists', false);
-//                        $scope.bean.obj_paciente.id = old_id;
-//                    }
-//                });
-//            }
-//        });
-//        
-//        $scope.$watch('bean.obj_medico.id', function () {
-//            if ($scope.bean) {
-//                serverService.promise_getOne('medico', $scope.bean.obj_medico.id).then(function (response) {
-//                    var old_id = $scope.bean.obj_medico.id;
-//                    $scope.bean.obj_medico = response.data.message;
-//                    if (response.data.message.id != 0) {
-//                        $scope.outerForm.obj_medico.$setValidity('exists', true);
-//                    } else {
-//                        $scope.outerForm.obj_medico.$setValidity('exists', false);
-//                        $scope.bean.obj_medico.id = old_id;
-//                    }
-//                });
-//            }
-//        });
-//        
-//        $scope.$watch('bean.obj_episodio.id', function () {
-//            if ($scope.bean) {
-//                serverService.promise_getOne('episodio', $scope.bean.obj_episodio.id).then(function (response) {
-//                    var old_id = $scope.bean.obj_episodio.id;
-//                    $scope.bean.obj_episodio = response.data.message;
-//                    if (response.data.message.id != 0) {
-//                        $scope.outerForm.obj_episodio.$setValidity('exists', true);
-//                    } else {
-//                        $scope.outerForm.obj_episodio.$setValidity('exists', false);
-//                        $scope.bean.obj_episodio.id = old_id;
-//                    }
-//                });
-//            }
-//        });
-//        
-//        $scope.$watch('bean.obj_prioridad.id', function () {
-//            if ($scope.bean) {
-//                serverService.promise_getOne('prioridad', $scope.bean.obj_prioridad.id).then(function (response) {
-//                    var old_id = $scope.bean.obj_prioridad.id;
-//                    $scope.bean.obj_prioridad = response.data.message;
-//                    if (response.data.message.id != 0) {
-//                        $scope.outerForm.obj_prioridad.$setValidity('exists', true);
-//                    } else {
-//                        $scope.outerForm.obj_prioridad.$setValidity('exists', false);
-//                        $scope.bean.obj_prioridad.id = old_id;
-//                    }
-//                });
-//            }
-//        });
-        
         
         $scope.$watch('bean.obj_importancia.id', function () {
             if ($scope.bean) {
@@ -297,16 +192,14 @@ moduloEpisodio.controller('EpisodioEditController', ['$scope', '$routeParams', '
                         $scope.medico = data.data.message[0];
                         $scope.outerForm.obj_medico.$setValidity('exists', true);
                     }else{
-                        
-                        $scope.medico.nombre = "";
-                        $scope.medico.primerapellido = "";
                         $scope.outerForm.obj_medico.$setValidity('exists', false);
+                        $scope.medico = {nombre:"", primerapellido:""};        
                     }
                 });
-            }else{
-               
-               $scope.outerForm.obj_medico.$setValidity('exists', true);
-               $scope.medico = {nombre:"", primerapellido:""};
+            }else if($scope.bean.obj_medico.id || $scope.bean.obj_medico.id === ""){
+                $scope.outerForm.obj_medico.$setValidity('exists', true);
+                $scope.medico = {nombre:"", primerapellido:""};
+                $scope.bean.obj_medico.id = 0;
             }
         });
 

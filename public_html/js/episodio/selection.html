@@ -99,26 +99,26 @@ THE SOFTWARE.
                             </div>
                             <div id="datos" ng-show="!status">
                                 <table class="table table-responsive table-bordered table-hover table-striped table-condensed dataTable no-footer">                                
-                                    <thead plistheaderspa></thead>
+                                    <thead plistselectionheaderspa></thead>
                                     <tbody>
                                         <tr ng-repeat="obj in page| filter:searchText">
-                                            <td ng-repeat="f in fields" ng-show="f.visible" class="text-right">
+                                            <td ng-repeat="f in fields" ng-show="f.showSelection && f.visible" class="text-right">
 
-                                                <div ng-show="f.visible && f.type == 'id'"><b>{{obj[f.name]}}</b></div>
-                                                <div ng-show="f.visible && f.type == 'date'" class="text-center">{{obj[f.name]}}</div>
-                                                <div ng-show="f.visible && f.type == 'integer'" class="text-center">{{obj[f.name]}}</div>
-                                                <div ng-show="f.visible && f.type == 'decimal'" class="text-center">{{obj[f.name]}}</div>
-                                                <div ng-show="f.visible && f.type == 'text'" class="text-left">{{obj[f.name]|clipString}}</div>
-                                                <div ng-show="f.visible && f.type == 'textarea'" class="text-left">{{obj[f.name]|clipString}}</div>
-                                                <div ng-show="f.visible && f.type == 'boolean'" class="text-center" ng-bind-html="obj[f.name] | booleanizate"></div>
+                                                <div ng-show="f.type == 'id'"><b>{{obj[f.name]}}</b></div>
+                                                <div ng-show="f.type == 'date'" class="text-center">{{obj[f.name]}}</div>
+                                                <div ng-show="f.type == 'integer'" class="text-center">{{obj[f.name]}}</div>
+                                                <div ng-show="f.type == 'decimal'" class="text-center">{{obj[f.name]}}</div>
+                                                <div ng-show="f.type == 'text'" class="text-left">{{obj[f.name]|clipString}}</div>
+                                                <div ng-show="f.type == 'textarea'" class="text-left">{{obj[f.name]|clipString}}</div>
+                                                <div ng-show="f.type == 'boolean'" class="text-center" ng-bind-html="obj[f.name] | booleanizate"></div>
                                                 <!------------------------------------------------>
-                                                <div ng-show="f.visible && f.name == 'obj_importancia'" class="text-center">{{obj[f.name].descripcion}}</div>
-                                                <div ng-show="f.visible && f.name == 'obj_servicio'" class="text-center">{{obj[f.name].descripcion}}</div>
-                                                <div ng-show="f.visible && f.name == 'obj_tipo'" class="text-center">{{obj[f.name].descripcion}}</div>
-                                                <div ng-show="f.visible && f.name == 'obj_paciente'" class="text-center">{{obj[f.name].name}} {{obj[f.name].primer_apellido}}</div>
-                                                <div ng-show="f.visible && f.name == 'obj_medico'" class="text-center">{{obj[f.name].id}}</div>
-                                                <div ng-show="f.visible && f.name == 'obj_episodio'" class="text-center">{{obj[f.name].fecha | date:'fullDate'}}</div>
-                                                <div ng-show="f.visible && f.name == 'obj_prioridad'" class="text-center">{{obj[f.name].descripcion}}</div>
+                                                <div ng-show="f.name == 'obj_importancia'" class="text-center">{{obj[f.name].descripcion}}</div>
+                                                <div ng-show="f.name == 'obj_servicio'" class="text-center">{{obj[f.name].descripcion}}</div>
+                                                <div ng-show="f.name == 'obj_tipo'" class="text-center">{{obj[f.name].descripcion}}</div>
+                                                <div ng-show="f.name == 'obj_paciente'" class="text-center">{{obj[f.name].name}} {{obj[f.name].primer_apellido}}</div>
+                                                <div ng-show="f.name == 'obj_medico'" class="text-center">{{obj[f.name].id}}</div>
+                                                <div ng-show="f.name == 'obj_episodio'" class="text-center">{{obj[f.name].fecha | date:'fullDate'}}</div>
+                                                <div ng-show="f.name == 'obj_prioridad'" class="text-center">{{obj[f.name].descripcion}}</div>
 
                                             </td>                      
                                             <td plistoperationbarspa></tdspa>
