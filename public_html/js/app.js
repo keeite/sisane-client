@@ -39,6 +39,8 @@ var sisane = angular.module('myApp', [
     'medicoControllers',
     'documentoControllers',
     'viaControllers',
+    'importanciaControllers',
+    'tipodocumentoControllers',
     'tipodiagnosticoControllers',
     'posologiaControllers',
     'prioridadControllers',
@@ -52,17 +54,18 @@ var sisane = angular.module('myApp', [
     'especialidadControllers',
     'servicioControllers',
     'pacienteControllers',
+    'zonaimagenControllers',
     'ui.bootstrap',
     'ngSanitize'
 ]);
 //-------------
 //---html5 mode off; setting up pushState needs server urlrewritting, so quitting...-------
-//sisane.config(['$locationProvider', function ($locationProvider) {
-//        $locationProvider.html5Mode({
-//            //requireBase: false,
-//            enabled: true
-//        });
-//    }]);
+sisane.config(['$locationProvider', function ($locationProvider) {
+        $locationProvider.html5Mode({
+            //requireBase: false,
+            enabled: true
+        });
+    }]);
 //-------------
 sisane.config(['$httpProvider', function ($httpProvider) {
         $httpProvider.defaults.withCredentials = true;
@@ -144,6 +147,20 @@ sisane.config(['$routeProvider', function ($routeProvider) {
         $routeProvider.when('/via/plist/:page?/:rpp?', {templateUrl: 'js/via/plist.html', controller: 'ViaPListController'});
         $routeProvider.when('/via/selection/:page?/:rpp?', {templateUrl: 'js/via/selection.html', controller: 'ViaSelectionController'});
         //------------
+        $routeProvider.when('/importancia/view/:id', {templateUrl: 'js/importancia/view.html', controller: 'ImportanciaViewController'});
+        $routeProvider.when('/importancia/new/:id?', {templateUrl: 'js/importancia/new.html', controller: 'ImportanciaNewController'});
+        $routeProvider.when('/importancia/edit/:id', {templateUrl: 'js/importancia/edit.html', controller: 'ImportanciaEditController'});
+        $routeProvider.when('/importancia/remove/:id', {templateUrl: 'js/importancia/remove.html', controller: 'ImportanciaRemoveController'});
+        $routeProvider.when('/importancia/plist/:page?/:rpp?', {templateUrl: 'js/importancia/plist.html', controller: 'ImportanciaPListController'});
+        $routeProvider.when('/importancia/selection/:page?/:rpp?', {templateUrl: 'js/importancia/selection.html', controller: 'ImportanciaSelectionController'});
+        //------------
+        $routeProvider.when('/tipodocumento/view/:id', {templateUrl: 'js/tipodocumento/view.html', controller: 'TipodocumentoViewController'});
+        $routeProvider.when('/tipodocumento/new/:id?', {templateUrl: 'js/tipodocumento/new.html', controller: 'TipodocumentoNewController'});
+        $routeProvider.when('/tipodocumento/edit/:id', {templateUrl: 'js/tipodocumento/edit.html', controller: 'TipodocumentoEditController'});
+        $routeProvider.when('/tipodocumento/remove/:id', {templateUrl: 'js/tipodocumento/remove.html', controller: 'TipodocumentoRemoveController'});
+        $routeProvider.when('/tipodocumento/plist/:page?/:rpp?', {templateUrl: 'js/tipodocumento/plist.html', controller: 'TipodocumentoPListController'});
+        $routeProvider.when('/tipodocumento/selection/:page?/:rpp?', {templateUrl: 'js/tipodocumento/selection.html', controller: 'TipodocumentoSelectionController'});
+        //------------
         $routeProvider.when('/prioridad/view/:id', {templateUrl: 'js/prioridad/view.html', controller: 'PrioridadViewController'});
         $routeProvider.when('/prioridad/new/:id?', {templateUrl: 'js/prioridad/new.html', controller: 'PrioridadNewController'});
         $routeProvider.when('/prioridad/edit/:id', {templateUrl: 'js/prioridad/edit.html', controller: 'PrioridadEditController'});
@@ -223,6 +240,16 @@ sisane.config(['$routeProvider', function ($routeProvider) {
         $routeProvider.when('/tipomuestra/selection/:page?/:rpp?', {templateUrl: 'js/tipomuestra/selection.html', controller: 'TipomuestraSelectionController'});
 
         //------------
+        
+        $routeProvider.when('/zonaimagen/view/:id', {templateUrl: 'js/zonaimagen/view.html', controller: 'ZonaimagenViewController'});
+        $routeProvider.when('/zonaimagen/new/:id?', {templateUrl: 'js/zonaimagen/new.html', controller: 'ZonaimagenNewController'});
+        $routeProvider.when('/zonaimagen/edit/:id', {templateUrl: 'js/zonaimagen/edit.html', controller: 'ZonaimagenEditController'});
+        $routeProvider.when('/zonaimagen/remove/:id', {templateUrl: 'js/zonaimagen/remove.html', controller: 'ZonaimagenRemoveController'});
+        $routeProvider.when('/zonaimagen/plist/:page?/:rpp?', {templateUrl: 'js/zonaimagen/plist.html', controller: 'ZonaimagenPListController'});
+        $routeProvider.when('/zonaimagen/selection/:page?/:rpp?', {templateUrl: 'js/zonaimagen/selection.html', controller: 'ZonaimagenSelectionController'});
+
+        //------------
+        
 
         $routeProvider.otherwise({redirectTo: '/'});
     }]);
@@ -264,6 +291,8 @@ var moduloPrioridad = angular.module('prioridadControllers', []);
 var moduloPosologia = angular.module('posologiaControllers', []);
 var moduloTipousuario = angular.module('tipousuarioControllers', []);
 var moduloVia = angular.module('viaControllers', []);
+var moduloImportancia = angular.module('importanciaControllers', []);
+var moduloTipodocumento = angular.module('tipodocumentoControllers', []);
 var moduloTipodiagnostico = angular.module('tipodiagnosticoControllers', []);
 var moduloMedicamento = angular.module('medicamentoControllers', []);
 var moduloMedico = angular.module('medicoControllers', []);
@@ -278,6 +307,7 @@ var moduloServicio = angular.module('servicioControllers', []);
 var moduloPaciente = angular.module('pacienteControllers', []);
 var moduloTipomuestra = angular.module('tipomuestraControllers', []);
 var moduloEpisodio = angular.module('episodioControllers', []);
+var moduloZonaimagen = angular.module('zonaimagenControllers', []);
 
 //-------------
 var moduloDirectivas = angular.module('Directives', []);
