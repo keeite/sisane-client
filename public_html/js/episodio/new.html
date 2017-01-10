@@ -128,7 +128,14 @@ THE SOFTWARE.
                                 </div>
                                 <!------------------------------------------------->
 
-                                <foreign-key ng-show="f.type == 'specific'" metadata="f" form="outerForm" bean="bean"></foreign-key>
+                                <foreign-key 
+                                    ng-show="f.type == 'specific'" 
+                                    name="f.name"
+                                    required="f.required"
+                                    reference="f.reference"
+                                    description="f.desc"
+                                    bean="bean[f.name]">
+                                </foreign-key>
                                
                                 <!------------------------------------------------->
 

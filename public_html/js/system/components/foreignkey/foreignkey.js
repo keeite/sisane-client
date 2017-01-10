@@ -4,8 +4,10 @@ moduloDirectivas.component('foreignKey', {
     controller: foreignkey,
     bindings: {
         bean: '=',
-        form: '=',
-        metadata: '<'
+        name: '<',
+        reference: '<',
+        description: '<',
+        required: '<'
     }
 
 });
@@ -15,47 +17,34 @@ function foreignkey(serverService, $uibModal) {
 
     self.chooseOne = function () {
         var modalInstance = $uibModal.open({
-            templateUrl: 'js/' + self.metadata.reference + '/selection.html',
-            controller: self.metadata.longname + "SelectionController",
+            templateUrl: 'js/' + self.reference + '/selection.html',
+            controller: serverService.capitalizeWord(self.reference) + "SelectionController",
             size: 'lg'
         }).result.then(function (modalResult) {
             self.change(modalResult);
         });
     };
 
-    self.change = function (id) {
-        if (!self.metadata.required && (id <= 0 || id == "" || id == undefined)) {
-            self.bean[self.metadata.name].id = null;
-            self.form[self.metadata.name].$setValidity('exists', true);
-            return;
-        }
+    self.change = function (id) { 
         if (self.bean) {
-            serverService.promise_getOne(self.metadata.reference, id).then(function (response) {
+            serverService.promise_getOne(self.reference, id).then(function (response) {
                 var old_id = id;
-                self.bean[self.metadata.name] = response.data.message;
+                self.bean = response.data.message;
                 if (response.data.message.id <= 0) {
-                    self.form[self.metadata.name].$setValidity('exists', false);
-                    self.bean[self.metadata.name].id = old_id;
+                    self.bean.id = old_id;
                 } else {
-
-                    self.form[self.metadata.name].$setValidity('exists', true);
-                    if (Array.isArray(self.metadata.desc)) {
-
+                    if (Array.isArray(self.description)) {
                         self.desc = "";
-                        for (var d of self.metadata.desc) {
-
-                            self.desc += self.bean[self.metadata.name][d] + " ";
+                        for (var d in self.description) {
+                            self.desc += self.bean[self.description[d]] + " ";
                         }
                     }else{
-                        self.desc = self.bean[self.metadata.name][self.metadata.desc]
+                        self.desc = self.bean[self.description];
                     }
                 }
-            }).catch(function (data) {
-                self.form[self.metadata.name].$setValidity('exists', false);
             });
         }
-    }
-
+    };
 }
 
 
