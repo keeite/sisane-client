@@ -4,6 +4,7 @@ moduloDirectivas.component('foreignKey', {
     controller: foreignkey,
     bindings: {
         bean: '=',
+        form: '=',
         name: '<',
         reference: '<',
         description: '<',
@@ -25,24 +26,42 @@ function foreignkey(serverService, $uibModal) {
         });
     };
 
-    self.change = function (id) { 
+    self.change = function (id) {
+        if (!self.required && (id <= 0 || id === "" || id === undefined)) {
+            self.bean.id = null;
+
+            validity(true);
+            return;
+        }
         if (self.bean) {
             serverService.promise_getOne(self.reference, id).then(function (response) {
                 var old_id = id;
                 self.bean = response.data.message;
                 if (response.data.message.id <= 0) {
+                    validity(false);
                     self.bean.id = old_id;
                 } else {
+
+                    validity(true);
                     if (Array.isArray(self.description)) {
+
                         self.desc = "";
                         for (var d in self.description) {
                             self.desc += self.bean[self.description[d]] + " ";
                         }
-                    }else{
+                    } else {
                         self.desc = self.bean[self.description];
                     }
                 }
+            }).catch(function (data) {
+                validity(false);
             });
+        }
+    };
+
+    var validity = function(isValid) {
+        if (self.form) {
+            self.form[self.name].$setValidity('exists', isValid);
         }
     };
 }

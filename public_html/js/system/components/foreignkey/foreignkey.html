@@ -1,4 +1,4 @@
-<div class="input-group foreign" id="{{fk.name}}_group">
+<div id="{{fk.name}}_group" ng-class="['input-group','foreign','control',{'has-error': fk.form[fk.name].$error.exists}]">
     <span class="input-group-addon" id="{{fk.name}}_button" ng-click="fk.chooseOne()">
         <span class="glyphicon glyphicon-search">
         </span>
@@ -19,4 +19,5 @@
         <span>{{fk.desc}}</span>
     </span> 
 </div>
+<span class="help-block" ng-show="fk.form[fk.name].$error.exists">Debes elegir uno/a que exista</span>
         
