@@ -40,23 +40,11 @@ THE SOFTWARE.
                         <form name="outerForm" class="form-horizontal text-left" ng-show="!status">
                             <div class="row" ng-repeat="f in fields">
                                 <!------------------------------------------------->       
-                                
+
                                 <!------------------------------------------------->       
-                                <div ng-show="f.type == 'id'" 
-                                     id="{{f.name}}-group" 
-                                     class="form-group"
-                                     >
-                                    <label class="col-sm-2 control-label" for="{{f.name}}">
-                                        {{f.longname}}:
-                                    </label>
-                                    <div class="control col-sm-3">
-                                        <input ng-model="bean[f.name]" 
-                                               type="text" id="{{f.name}}" 
-                                               class="form-control" name="{{f.name}}"
-                                               placeholder="{{f.name}}"
-                                               size="15" 
-                                               disabled="disabled" />
-                                    </div>
+                                <div ng-show="f.type == 'id'" class="form-group">
+                                    <clabel wide="2" name="f.name" longname="f.longname" required="f.required"></clabel>
+                                    <key class="col-md-3" ide="bean[f.name]" name="f.name" disable="false"></key> 
                                 </div>
                                 <!------------------------------------------------->                            
                                 <div ng-show="f.type === 'textarea'" id="{{f.name}}-group" class="form-group"
@@ -120,11 +108,9 @@ THE SOFTWARE.
                                     </div>
                                 </div>
                                 <!------------------------------------------------->
-                                <div ng-show="f.type == 'boolean'"  id="{{f.name}}-group" class="form-group">
-                                    <label class="col-sm-2 control-label" for="{{f.name}}">{{f.longname}}:</label>
-                                    <div class="control col-sm-1">
-                                        <input  ng-model="bean[f.name]" type="checkbox" id="destacado" name="destacado" value="true" checked="checked">
-                                    </div>
+                                <div ng-show="f.type == 'boolean'" class="form-group">
+                                    <clabel wide="2" name="f.name" longname="f.longname" required="f.required"></clabel>
+                                    <boolean parametro="bean[f.name]"></boolean>
                                 </div>
                                 <!------------------------------------------------->
                                 <div ng-show="f.type == 'specific'" class="form-group">

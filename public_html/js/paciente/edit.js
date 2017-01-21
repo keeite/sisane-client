@@ -39,6 +39,8 @@ moduloPaciente.controller('PacienteEditController', ['$scope', '$routeParams', '
         $scope.error = true;
         $scope.debugging = serverService.debugging();
         $scope.bean = {};
+        $scope.bean.obj_servicio = {"id": 0};
+        $scope.show_obj_servicio = true;
         $scope.id = $routeParams.id;
         serverService.promise_getOne($scope.ob, $scope.id).then(function (response) {
             if (response.status == 200) {
@@ -56,7 +58,7 @@ moduloPaciente.controller('PacienteEditController', ['$scope', '$routeParams', '
             $scope.status = "Error en la recepción de datos del servidor";
         });
         $scope.save = function () {
-             $scope.bean.fecha_salida = $filter('date')($scope.bean.fecha_salida, "dd/MM/yyyy");
+            $scope.bean.fecha_salida = $filter('date')($scope.bean.fecha_salida, "dd/MM/yyyy");
             var jsonToSend = {json: JSON.stringify(serverService.array_identificarArray($scope.bean))};
             serverService.promise_setOne($scope.ob, jsonToSend).then(function (response) {
                 if (response.status == 200) {
@@ -84,7 +86,7 @@ moduloPaciente.controller('PacienteEditController', ['$scope', '$routeParams', '
         $scope.plist = function () {
             $location.path('/' + $scope.ob + '/plist');
         };
-        
+
         $scope.dateOptions = {
             formatYear: 'yyyy',
             startingDay: 1
@@ -97,7 +99,7 @@ moduloPaciente.controller('PacienteEditController', ['$scope', '$routeParams', '
         $scope.popup1 = {
             opened: false
         };
-        
+
         $scope.chooseOne = function (nameForeign, foreignObjectName, contollerName) {
             var modalInstance = $uibModal.open({
                 templateUrl: 'js/' + foreignObjectName + '/selection.html',
@@ -106,5 +108,5 @@ moduloPaciente.controller('PacienteEditController', ['$scope', '$routeParams', '
             }).result.then(function (modalResult) {
                 $scope.bean[nameForeign].id = modalResult;
             });
-        };       
+        };
     }]);

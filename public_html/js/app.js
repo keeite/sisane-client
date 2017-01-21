@@ -179,7 +179,7 @@ sisane.config(['$routeProvider', function ($routeProvider) {
         $routeProvider.when('/tipodiagnostico/remove/:id', {templateUrl: 'js/tipodiagnostico/remove.html', controller: 'TipodiagnosticoRemoveController'});
         $routeProvider.when('/tipodiagnostico/plist/:page?/:rpp?', {templateUrl: 'js/tipodiagnostico/plist.html', controller: 'TipodiagnosticoPListController'});
         $routeProvider.when('/tipodiagnostico/selection/:page?/:rpp?', {templateUrl: 'js/tipodiagnostico/selection.html', controller: 'TipodiagnosticoSelectionController'});
-         //------------
+        //------------
         $routeProvider.when('/episodio/view/:id', {templateUrl: 'js/episodio/view.html', controller: 'EpisodioViewController'});
         $routeProvider.when('/episodio/new/:id?', {templateUrl: 'js/episodio/new.html', controller: 'EpisodioNewController'});
         $routeProvider.when('/episodio/edit/:id', {templateUrl: 'js/episodio/edit.html', controller: 'EpisodioEditController'});
@@ -226,6 +226,15 @@ sisane.config(['$routeProvider', function ($routeProvider) {
         $routeProvider.when('/especialidad/selection/:page?/:rpp?', {templateUrl: 'js/especialidad/selection.html', controller: 'EspecialidadSelectionController'});
 
         //------------
+
+        $routeProvider.when('/cargo/view/:id', {templateUrl: 'js/cargo/view.html', controller: 'CargoViewController'});
+        $routeProvider.when('/cargo/new/:id?', {templateUrl: 'js/cargo/new.html', controller: 'CargoNewController'});
+        $routeProvider.when('/cargo/edit/:id', {templateUrl: 'js/cargo/edit.html', controller: 'CargoEditController'});
+        $routeProvider.when('/cargo/remove/:id', {templateUrl: 'js/cargo/remove.html', controller: 'CargoRemoveController'});
+        $routeProvider.when('/cargo/plist/:page?/:rpp?', {templateUrl: 'js/cargo/plist.html', controller: 'CargoPListController'});
+        $routeProvider.when('/cargo/selection/:page?/:rpp?', {templateUrl: 'js/cargo/selection.html', controller: 'CargoSelectionController'});
+
+        //------------
         $routeProvider.when('/paciente/view/:id', {templateUrl: 'js/paciente/view.html', controller: 'PacienteViewController'});
         $routeProvider.when('/paciente/new/:id?', {templateUrl: 'js/paciente/new.html', controller: 'PacienteNewController'});
         $routeProvider.when('/paciente/edit/:id', {templateUrl: 'js/paciente/edit.html', controller: 'PacienteEditController'});
@@ -264,7 +273,7 @@ sisane.config(['$routeProvider', function ($routeProvider) {
         $routeProvider.when('/diagnostico/selection/:page?/:rpp?', {templateUrl: 'js/diagnostico/selection.html', controller: 'DiagnosticoSelectionController'});
 
         //------------        
-        
+
         $routeProvider.when('/tecnica/view/:id', {templateUrl: 'js/tecnica/view.html', controller: 'TecnicaViewController'});
         $routeProvider.when('/tecnica/new/:id?', {templateUrl: 'js/tecnica/new.html', controller: 'TecnicaNewController'});
         $routeProvider.when('/tecnica/edit/:id', {templateUrl: 'js/tecnica/edit.html', controller: 'TecnicaEditController'});
@@ -273,7 +282,7 @@ sisane.config(['$routeProvider', function ($routeProvider) {
         $routeProvider.when('/tecnica/selection/:page?/:rpp?', {templateUrl: 'js/tecnica/selection.html', controller: 'TecnicaSelectionController'});
 
         //------------
-        
+
         $routeProvider.when('/analitica/view/:id', {templateUrl: 'js/analitica/view.html', controller: 'AnaliticaViewController'});
         $routeProvider.when('/analitica/new/:id?', {templateUrl: 'js/analitica/new.html', controller: 'AnaliticaNewController'});
         $routeProvider.when('/analitica/edit/:id', {templateUrl: 'js/analitica/edit.html', controller: 'AnaliticaEditController'});
