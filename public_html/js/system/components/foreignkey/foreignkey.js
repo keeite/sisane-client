@@ -15,7 +15,7 @@ moduloDirectivas.component('foreignKey', {
 
 function foreignkey(serverService, $uibModal) {
     var self = this;
-
+    
     self.chooseOne = function () {
         var modalInstance = $uibModal.open({
             templateUrl: 'js/' + self.reference + '/selection.html',
