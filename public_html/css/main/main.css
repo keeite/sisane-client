@@ -5679,8 +5679,3 @@ button.close {
 @media print {
   .hidden-print {
     display: none !important; } }
-
-
-.mtmModal1 .modal-dialog{
-    width: 80%;
-}
