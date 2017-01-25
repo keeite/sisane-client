@@ -2,8 +2,9 @@ moduloDirectivas.controller('mtmModal', ['$scope', 'serverService', '$uibModalIn
         $scope.fields = reference.fields;
         $scope.vars = reference.vars;
 
-        function getData(id) {
-            serverService.promise_getPage(reference.name, 5, 1, 'and,id_' + currentTable + ',equa,' + id).then(function (data) {
+        function getData() {
+            var filter = '&filter=and,id_' + currentTable + ',equa,' + id;
+            serverService.promise_getAll(reference.name, filter).then(function (data) {
                 var vars = reference.vars;
                 var mdata = data.data.message;
                 var result = [];
@@ -26,7 +27,8 @@ moduloDirectivas.controller('mtmModal', ['$scope', 'serverService', '$uibModalIn
                 console.log('error', err);
             });
         }
-        getData(id);
+        
+        getData();
 
         $scope.add = function () {
             var modalInstance2 = $uibModal.open({
@@ -37,34 +39,25 @@ moduloDirectivas.controller('mtmModal', ['$scope', 'serverService', '$uibModalIn
                     id: function () {
                         return id;
                     },
-                    reference: function(){
+                    reference: function () {
                         return reference.name;
                     },
-                    from: function(){
+                    from: function () {
                         return currentTable;
                     }
                 }
-            }).result.then(function (modalResult) {
-
+            }).result.then(function (modalResult) { 
                 if (modalResult) {
                     getData();
                 }
 
-            });
-        }
-
+            }).catch(function (err) {
+                console.log(err);
+            });;
+        };
 
         $scope.cancel = function () {
-            $modalInstance.dismiss('cancel');
-            //$uibModalInstance.close();
-        }
-
-
-
-
-
-
-
-
+            $modalInstance.close();
+        };
     }]);
 

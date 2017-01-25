@@ -198,6 +198,11 @@ moduloServicios
                     }
                     return $http.get(this.getAppUrl() + '?ob=' + strObject + '&op=getpage&page=' + page + "&rpp=" + rpp + filter + order, 'GET', '');
                 },
+                promise_getAll: function (strClass, filter, order) {
+                    filter = (filter === undefined || filter === null) ? "": filter;
+                    order = (order === undefined || order === null) ? "": order;
+                    return $http.get(this.getAppUrl() + '?ob=' + strClass + '&op=getall' + filter + order, 'GET', '');
+                },
                 promise_getOne: function (strClass, id) {
                     return $http.get(this.getAppUrl() + '?ob=' + strClass + '&op=get&id=' + id, 'GET', '');
                 },
@@ -255,6 +260,18 @@ moduloServicios
                 },
                 capitalizeWord: function (string) {
                     return string.charAt(0).toUpperCase() + string.slice(1);
+                },
+                getFilterExpression: function (filter, sfilter) {
+                    if (this.checkEmptyString(filter)) {
+                        return this.checkEmptyString(filter)
+                    }
+                    if (this.checkEmptyString(sfilter)) {
+                        if (this.checkEmptyString(filter)) {
+                            return this.checkEmptyString(filter) + '+' + this.checkEmptyString(sfilter);
+                        } else {
+                            return  this.checkEmptyString(sfilter);
+                        }
+                    }
                 }
             };
         })

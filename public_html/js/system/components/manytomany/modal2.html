@@ -1,8 +1,7 @@
 <div class="modal-header">
-    <button class="btn btn-danger pull-right" ng-click="finish()">X</button>
+    <button class="btn btn-danger pull-right" ng-click="close()">X</button>
 </div>
 <div class="modal-body">
-    {{bean|json}}
     <div id="wrapper">
         <div class="container-fluid">
             <div class="row">
@@ -18,7 +17,6 @@
                         <div class="col-md-12">                
                             <form name="outerForm" class="form-horizontal text-left" ng-show="!status">
                             <div class="row" ng-repeat="f in fields">
-                                <!------------------------------------------------->       
 
                                 <!------------------------------------------------->       
                                 <div ng-show="f.type == 'id'" class="form-group">
@@ -37,7 +35,7 @@
                                         maxlength="f.maxlength" 
                                         pattern="f.pattern" 
                                         required="f.required">
-                                    </componentenumero> 
+                                    </componentenumero>
                                 </div>
                                 
                                 <!------------------------------------------------->                            
@@ -66,7 +64,7 @@
                                         length="f.maxlength" 
                                         pattern="f.pattern" 
                                         required="f.required">
-                                    </texto> 
+                                    </texto>
                                 </div>
                                 <!------------------------------------------------->
                                 <div ng-show="f.type == 'boolean'" class="form-group">
@@ -86,34 +84,21 @@
                                     </foreign-key>
                                </div>
                                 <!------------------------------------------------->
-                                <div class="form-group"   
+                                <div class="form-group"
                                      ng-show="f.type == 'date'"
-                                     id="{{f.name}}-group" 
-                                     ng-class="{'has-error': !outerForm[f.name].$pristine && (outerForm[f.name].$error.required || !bean[f.name])}">
-                                    <label class="col-sm-2 control-label" for="fecha">
-                                        <span ng-show="{{f.required}}">*</span>
-                                        {{f.longname}}
-                                    </label>
-                                    <div class="control col-sm-3">
-                                        <div class="input-group date" id="fecha_group">
-                                            <input type="text" 
-                                                   class="form-control" 
-                                                   placeholder="{{f.longname}}"
-                                                   uib-datepicker-popup="dd/MM/yyyy" 
-                                                   ng-model="bean.fecha" 
-                                                   is-open="popup1.opened" 
-                                                   datepicker-options="dateOptions" 
-                                                   ng-required="{{f.required}}" 
-                                                   close-text="Cerrar"
-                                                   id="{{f.name}}"
-                                                   name="{{f.name}}" />                               
-                                            <span class="input-group-addon" ng-click="open1()">
-                                                <i class="glyphicon glyphicon-calendar"></i>
-                                            </span>                                                                                    
-                                        </div>
-                                        <span class="help-block" ng-show="!outerForm[f.name].$pristine && (outerForm.fecha.$error.required || !bean[f.name])">El campo fecha es obligatorio</span>
-                                        <em>{{bean.fecha| date:'fullDate' }}</em>
-                                    </div>
+                                     
+                                     ng-class="{'has-error': (outerForm[f.name].$error.required || 
+                                                             outerForm[f.name].$error.valid )   
+                                                             && !outerForm[f.name].$pristine}">
+                                    <clabel wide="2" name="f.name" longname="f.longname" required="f.required" /> 
+                                   
+                                    <date-picker 
+                                        class="col-sm-3"
+                                        name="f.name" 
+                                        required="f.required" 
+                                        fecha="bean[f.name]" 
+                                        form="outerForm" /> 
+                                    <span class="help-block" ng-show="outerForm[f.name].$error.required">El campo es obligatorio</span>
                                 </div>
 
                                 <!------------------------------------------------->  
@@ -121,7 +106,7 @@
                             </div>
                             <div class="control-group text-right">
                                 <div class="controls">
-                                    <a class="btn btn-primary" ng-click="save()" ng-disabled="!outerForm.$valid">Guardar</a>
+                                    <a class="btn btn-primary" ng-click="save()">Guardar</a>
                                     <a class="btn btn-default" ng-click="close()">Cerrar</a>
                                 </div>
                             </div>

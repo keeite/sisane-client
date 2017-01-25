@@ -47,10 +47,15 @@ moduloAnalitica.controller('AnaliticaPListController', ['$scope', '$routeParams'
         $scope.filterParams = serverService.checkNull($routeParams.filter)
         $scope.orderParams = serverService.checkNull($routeParams.order)
         $scope.sfilterParams = serverService.checkNull($routeParams.sfilter)
-        $scope.filterExpression = serverService.checkEmptyString($routeParams.filter) + '+' + serverService.checkEmptyString($routeParams.sfilter);
+        $scope.filterExpression = serverService.getFilterExpression($routeParams.filter, $routeParams.sfilter);
         $scope.status = null;
         $scope.debugging = serverService.debugging();
         function getDataFromServer() {
+            
+            if ($routeParams.id) {
+                $scope.filterExpression = 'and,id_episodio,equa,' + $routeParams.id;
+            }
+            
             serverService.promise_getCount($scope.ob, $scope.filterExpression).then(function (response) {
                 if (response.status == 200) {
                     $scope.registers = response.data.message;
