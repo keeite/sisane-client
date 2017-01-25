@@ -33,11 +33,11 @@ function manyToMany(serverService, $uibModal) {
     self.open = function (id) {
 //        $("#mtmModal" + self.id).modal('show');
 //        getData(id);
-console.log('open',id);
+        console.log('open', id);
         var modalInstance = $uibModal.open({
             templateUrl: 'js/system/components/manytomany/modal.html',
             controller: 'mtmModal',
-            size: 'lg',
+            windowClass: 'mtmModal1',
             resolve: {
                 id: function () {
                     return id;
@@ -56,34 +56,34 @@ console.log('open',id);
         });
 
     }
-    
+
 //    $("#mtmModal" + self.id).on('shown.bs.modal',function(){
 //        getData();
 //        console.log("entra");
 //    });
-    
+
     function getData(id) {
         serverService.promise_getPage(self.referencetable.name, 5, 1, 'and,id_' + self.table + ',equa,' + id).then(function (data) {
             var vars = self.referencetable.vars;
             var mdata = data.data.message;
             var result = [];
-            
+
             for (var d in mdata) {
                 var res = [];
                 for (var v in vars) {
                     if (typeof vars[v] === 'object') {
                         var n = Object.keys(vars[v]);
                         res.push(mdata[d][n[0]][vars[v][n[0]]]);
-                   } else {
+                    } else {
                         res.push(mdata[d][vars[v]]);
                     }
                 }
                 result.push(res);
             }
-           
+
             self.data = result;
-        }).catch(function(err){
-            console.log('error',err);
+        }).catch(function (err) {
+            console.log('error', err);
         });
     }
 
